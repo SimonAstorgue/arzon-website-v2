@@ -3,8 +3,8 @@ name: Deploy Vite App to GitHub Pages
 # Trigger the workflow on push to the main branch
 on:
   push:
-    branches:
-      - main  # Or change to any branch you'd like to use for deployment
+    tags:
+      - 'deploy'
 
 jobs:
   build-and-deploy:

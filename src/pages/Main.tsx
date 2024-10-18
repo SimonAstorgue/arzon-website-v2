@@ -3,6 +3,7 @@ import GalleryCarousel from "../components/GalleryCarousel.tsx";
 
 import background from "../assets/img/background.jpg"
 import arzon from "../assets/img/arzon.jpg"
+import presentation from "/assets/img/image-presentation.jpg"
 
 const VideoEmbed = () => {
     return (
@@ -28,7 +29,7 @@ const MainPage = () => {
             </div>
             <div className="w-full h-16 relative top-[-63px] bg-gradient-to-t from-zinc-100 dark:from-zinc-800"/>
             <div className="w-full min-h-screen flex flex-col xl:flex-row gap-12 px-5 lg:px-10">
-                <img src="/assets/img/image-presentation.jpg" alt="presentation"
+                <img src={presentation} alt="presentation"
                      className="rounded-2xl mx-auto w-3/4 drop-shadow-xl sm:w-1/2 lg:w-2/5 xl:w-auto xl:h-[80vh]"/>
                 <div className="flex flex-col gap-4 md:gap-6 xl:gap-12 xl:mx-4">
                     <Typography

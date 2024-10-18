@@ -2,8 +2,11 @@ import {
     AppBar,
     Avatar,
     Box,
-    Button, Chip, Divider,
-    IconButton, ListItemIcon,
+    Button,
+    Chip,
+    Divider,
+    IconButton,
+    ListItemIcon,
     Menu,
     MenuItem,
     Toolbar,
@@ -13,9 +16,23 @@ import {
 import {Collections, Home, Logout, Person, Settings, SportsBar} from "@mui/icons-material";
 
 import React, {useEffect, useState} from "react";
+import {Link} from "react-router-dom";
+import axios from "axios";
+
 import {ThemeSwitch} from "./Switchs.tsx";
 import useDarkMode from "../hooks/useDarkMode.tsx";
-import {Link} from "react-router-dom";
+
+import Logo from "../assets/img/logo-arzon.png";
+
+async function checkToken(token: string): Promise<boolean> {
+    try {
+        const reponse = await axios.post(`${import.meta.env.VITE_API_URL}/auth/checkToken`, {token});
+        return reponse.data;
+    } catch (e) {
+        console.error(e);
+        return false;
+    }
+}
 
 const Header = ({isScrollEffect}: { isScrollEffect: boolean }) => {
 
@@ -63,11 +80,19 @@ const Header = ({isScrollEffect}: { isScrollEffect: boolean }) => {
     const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
     useEffect(() => {
-        const token = localStorage.getItem('authToken');
-        if (token) {
-            // Optionally, validate token with the server or decode if using JWT
-            setIsAuth(true);
-        }
+        const checkAuthToken = async () => {
+            const token = localStorage.getItem('authToken');
+            if (token) {
+                const isValid = await checkToken(token);
+                if (isValid) {
+                    setIsAuth(true);
+                } else {
+                    setIsAuth(false);
+                    localStorage.removeItem('authToken');
+                }
+            }
+        };
+        checkAuthToken().then(r => r);
     }, []);
 
     const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
@@ -80,6 +105,7 @@ const Header = ({isScrollEffect}: { isScrollEffect: boolean }) => {
 
     const handleLogout = () => {
         setIsAuth(false);
+        localStorage.removeItem('authToken');
         handleMenuClose();
     };
 
@@ -91,7 +117,7 @@ const Header = ({isScrollEffect}: { isScrollEffect: boolean }) => {
                     boxShadow: `0 12px 12px rgba(0, 0, 0, ${opacity * 0.28})`,
                 }}>
             <Toolbar className="flex justify-center mx-1.5 p-0">
-                <img src="/src/assets/img/logo-arzon.png" alt="Logo"
+                <img src={Logo} alt="Logo"
                      className="w-16 h-16 mt-3 drop-shadow-lg sm:w-20 sm:h-20 sm:mt-4"/>
 
                 <Box className="flex flex-grow justify-center items-center">

@@ -1,6 +1,9 @@
 import {Typography} from "@mui/material";
 import GalleryCarousel from "../components/GalleryCarousel.tsx";
 
+import background from "../assets/img/background.jpg"
+import arzon from "../assets/img/arzon.jpg"
+
 const VideoEmbed = () => {
     return (
         <div
@@ -18,7 +21,7 @@ const VideoEmbed = () => {
 const MainPage = () => {
     return (
         <div className="flex flex-col w-full bg-zinc-100 dark:bg-zinc-800">
-            <img src="/src/assets/img/background.jpg" alt="background"
+            <img src={background} alt="background"
                  className="w-full h-screen object-cover object-center contrast-75"/>
             <div className="absolute inset-0 flex justify-center items-center">
                 <VideoEmbed/>
@@ -45,7 +48,7 @@ const MainPage = () => {
                 </div>
             </div>
             <div className="relative w-full flex flex-col justify-center">
-                <img src="/src/assets/img/arzon.jpg" alt="arzon"
+                <img src={arzon} alt="arzon"
                      className="w-full h-[75vh] object-cover object-center absolute top-0"/>
                 <GalleryCarousel/>
             </div>

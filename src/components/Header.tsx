@@ -23,8 +23,9 @@ import {ThemeSwitch} from "./Switchs.tsx";
 import useDarkMode from "../hooks/useDarkMode.tsx";
 
 import Logo from "../assets/img/logo-arzon.png";
+import LoginPopUp from "./PopUpLogin.tsx";
 
-async function checkToken(token: string): Promise<boolean> {
+async function checkToken(token: string) {
     try {
         const reponse = await axios.post(`${import.meta.env.VITE_API_URL}/auth/checkToken`, {token});
         return reponse.data;
@@ -57,8 +58,11 @@ const Header = ({isScrollEffect}: { isScrollEffect: boolean }) => {
         };
 
         if (isScrollEffect) {
+            setOpacity(0);
             // Add scroll event listener
             window.addEventListener('scroll', handleScroll);
+        } else {
+            setOpacity(1);
         }
 
         // Cleanup scroll event listener on component unmount
@@ -78,14 +82,20 @@ const Header = ({isScrollEffect}: { isScrollEffect: boolean }) => {
 
     const [isAuth, setIsAuth] = useState(false);
     const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+    const [userId, setUserId] = useState<number | null>(null);
+    const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
 
     useEffect(() => {
         const checkAuthToken = async () => {
             const token = localStorage.getItem('authToken');
             if (token) {
-                const isValid = await checkToken(token);
-                if (isValid) {
+                const data = await checkToken(token);
+                console.log(data);
+                if (data) {
                     setIsAuth(true);
+                    setAvatarUrl(`/arzon-website-v2/assets/img/avatars/${data.avatar}`);
+                    setUserId(data.userId);
+                    console.log(userId);
                 } else {
                     setIsAuth(false);
                     localStorage.removeItem('authToken');
@@ -93,7 +103,7 @@ const Header = ({isScrollEffect}: { isScrollEffect: boolean }) => {
             }
         };
         checkAuthToken().then(r => r);
-    }, []);
+    }, [userId]);
 
     const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget as HTMLElement);
@@ -108,6 +118,16 @@ const Header = ({isScrollEffect}: { isScrollEffect: boolean }) => {
         localStorage.removeItem('authToken');
         handleMenuClose();
     };
+
+    const [open, setOpen] = useState(false);
+    const handleOpenPopUp = () => {
+        setOpen(true);
+        document.body.classList.add('login-open');
+    }
+    const handleClosePopUp = () => {
+        setOpen(false);
+        document.body.classList.remove('login-open');
+    }
 
     return (
         <AppBar position="fixed" className={`w-full h-[70px] z-50`}
@@ -167,7 +187,8 @@ const Header = ({isScrollEffect}: { isScrollEffect: boolean }) => {
                 {isAuth ? (
                     <>
                         <IconButton onClick={handleMenuOpen} className="w-10 h-10 mx-1.5 sm:w-12 sm:h-12">
-                            <Avatar className="w-10 h-10 mx-1.5 sm:w-12 sm:h-12 cursor-pointer drop-shadow-lg"/>
+                            <Avatar src={avatarUrl || ''}
+                                    className="w-10 h-10 mx-1.5 sm:w-12 sm:h-12 cursor-pointer drop-shadow-lg"/>
                         </IconButton>
                         <Menu
                             anchorEl={anchorEl}
@@ -211,13 +232,16 @@ const Header = ({isScrollEffect}: { isScrollEffect: boolean }) => {
                         </Menu>
                     </>
                 ) : (
-                    <Chip label="Login" onClick={() => setIsAuth(true)}
-                          className="bg-[rgba(39,39,42,.08)] dark:bg-[rgba(244,244,245,.08)] text-zinc-900 dark:text-zinc-100 uppercase font-bold text-sm sm:text-xl mx-1.5"
-                          sx={{
-                              '& .MuiChip-label': {
-                                  padding: '0 6px'
-                              },
-                          }}/>
+                    <>
+                        <Chip label="Login" onClick={handleOpenPopUp}
+                              className="bg-[rgba(39,39,42,.08)] dark:bg-[rgba(244,244,245,.08)] text-zinc-900 dark:text-zinc-100 uppercase font-bold text-sm sm:text-xl mx-1.5"
+                              sx={{
+                                  '& .MuiChip-label': {
+                                      padding: '0 6px'
+                                  },
+                              }}/>
+                        <LoginPopUp open={open} handleClose={handleClosePopUp}/>
+                    </>
                 )}
 
             </Toolbar>

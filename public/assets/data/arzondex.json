@@ -1,0 +1,114 @@
+[
+  {
+    "id": "card-baptiste",
+    "types": "water",
+    "subtype": "basic v",
+    "supertypes": "pokémon",
+    "rarity": "rare holo v",
+    "img": "baptiste.png"
+  },
+  {
+    "id": "card-simon",
+    "types": "fire",
+    "subtype": "basic v",
+    "supertypes": "pokémon",
+    "rarity": "rare holo v",
+    "img": "simon.png"
+  },
+  {
+    "id": "card-antoinus",
+    "types": "fly",
+    "subtype": "basic v",
+    "supertypes": "pokémon",
+    "rarity": "rare holo v",
+    "img": "antoine.png"
+  },
+  {
+    "id": "card-harold",
+    "types": "grass",
+    "subtype": "basic v",
+    "supertypes": "pokémon",
+    "rarity": "rare holo v",
+    "img": "harold.png"
+  },
+  {
+    "id": "card-brice",
+    "types": "ghost",
+    "subtype": "basic v",
+    "supertypes": "pokémon",
+    "rarity": "rare holo v",
+    "img": "brice.png"
+  },
+  {
+    "id": "card-nico-garris",
+    "types": "fairy",
+    "subtype": "basic v big",
+    "supertypes": "pokémon",
+    "rarity": "rare ultra",
+    "img": "nico-garris.png"
+  },
+  {
+    "id": "card-benji",
+    "types": "poison",
+    "subtype": "basic v",
+    "supertypes": "pokémon",
+    "rarity": "rare holo v",
+    "img": "benji.png"
+  },
+  {
+    "id": "card-nolann",
+    "types": "fight",
+    "subtype": "basic v",
+    "supertypes": "pokémon",
+    "rarity": "rare holo v",
+    "img": "nolann.png"
+  },
+  {
+    "id": "card-ant-one",
+    "types": "electric",
+    "subtype": "basic v",
+    "supertypes": "pokémon",
+    "rarity": "rare holo v",
+    "img": "ant-one.png"
+  },
+  {
+    "id": "card-lucie",
+    "types": "psy",
+    "subtype": "basic v",
+    "supertypes": "pokémon",
+    "rarity": "rare holo v",
+    "img": "lucie.png"
+  },
+  {
+    "id": "card-noueta",
+    "types": "",
+    "subtype": "basic v",
+    "supertypes": "pokémon",
+    "rarity": "rare holo v",
+    "img": "noueta.png"
+  },
+  {
+    "id": "card-alex",
+    "types": "metal",
+    "subtype": "basic v",
+    "supertypes": "pokémon",
+    "rarity": "rare holo v",
+    "img": "alex.png"
+  },
+  {
+    "id": "card-manon",
+    "types": "poison",
+    "subtype": "basic v",
+    "supertypes": "pokémon",
+    "rarity": "rare holo v",
+    "img": "manon.png"
+  },
+  {
+    "id": "card-freud",
+    "types": "",
+    "subtype": "basic",
+    "supertypes": "pokémon",
+    "rarity": "rare secret",
+    "img": "freud.png"
+  }
+]

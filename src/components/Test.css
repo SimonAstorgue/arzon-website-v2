@@ -1,0 +1,256 @@
+.arzoncard {
+
+    --grain: url("/arzon-website-v2/assets/img/effects/grain.webp");
+    --glitter: url("/arzon-website-v2/assets/img/effects/glitter.png");
+    --glittersize: 25%;
+
+    --space: 5%;
+    --angle: 133deg;
+    --imgsize: cover;
+
+    --red: #f80e35;
+    --yellow: #eedf10;
+    --green: #21e985;
+    --blue: #0dbde9;
+    --violet: #c929f1;
+
+    --clip: inset(9.85% 8% 52.85% 8%);
+    --clip-invert: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 0 47.15%, 91.5% 47.15%, 91.5% 9.85%, 8% 9.85%, 8% 47.15%, 0 50%);
+
+    --clip-stage: polygon(91.5% 9.85%, 57% 9.85%, 54% 12%, 17% 12%, 16% 14%, 12% 16%, 8% 16%, 8% 47.15%, 92% 47.15%);
+    --clip-stage-invert: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 0 47.15%, 91.5% 47.15%, 91.5% 9.85%, 57% 9.85%, 54% 12%, 17% 12%, 16% 14%, 12% 16%, 8% 16%, 8% 47.15%, 0 50%);
+
+    --clip-trainer: inset(14.5% 8.5% 48.2% 8.5%);
+    --clip-borders: inset(2.8% 4% round 2.55% / 1.5%);
+
+    --card-aspect: 0.718;
+    --card-radius: 4.55% / 3.5%;
+    --card-edge: hsl(47, 100%, 78%);
+    --card-back: hsl(205, 100%, 25%);
+    --card-glow: hsl(175, 100%, 90%);
+
+    --sunpillar-1: hsl(2, 100%, 73%);
+    --sunpillar-2: hsl(53, 100%, 69%);
+    --sunpillar-3: hsl(93, 100%, 69%);
+    --sunpillar-4: hsl(176, 100%, 76%);
+    --sunpillar-5: hsl(228, 100%, 74%);
+    --sunpillar-6: hsl(283, 100%, 73%);
+
+    --sunpillar-clr-1: var(--sunpillar-1);
+    --sunpillar-clr-2: var(--sunpillar-2);
+    --sunpillar-clr-3: var(--sunpillar-3);
+    --sunpillar-clr-4: var(--sunpillar-4);
+    --sunpillar-clr-5: var(--sunpillar-5);
+    --sunpillar-clr-6: var(--sunpillar-6);
+
+    --x: 50%;
+    --y: 50%;
+}
+
+.testshine,
+.testglare {
+
+    will-change: transform, opacity, background-image, background-size,
+    background-position, background-blend-mode, filter;
+
+}
+
+.testshine {
+
+    display: grid;
+    transform: translateZ(1px);
+    overflow: hidden;
+    z-index: 20;
+    inset: 0;
+    position: absolute;
+    clip-path: inset(0 0 0 0 round 20px);
+
+    background: transparent;
+    background-size: cover;
+    background-position: center;
+
+    filter: brightness(.85) contrast(2.75) saturate(.65);
+    mix-blend-mode: color-dodge;
+
+}
+
+.testshine:before,
+.testshine:after {
+
+    --sunpillar-clr-1: var(--sunpillar-5);
+    --sunpillar-clr-2: var(--sunpillar-6);
+    --sunpillar-clr-3: var(--sunpillar-1);
+    --sunpillar-clr-4: var(--sunpillar-2);
+    --sunpillar-clr-5: var(--sunpillar-3);
+    --sunpillar-clr-6: var(--sunpillar-4);
+
+    grid-area: 1/1;
+    transform: translateZ(1px);
+    clip-path: inset(0 0 0 0 round 20px);
+
+}
+
+.testshine:after {
+
+    --sunpillar-clr-1: var(--sunpillar-6);
+    --sunpillar-clr-2: var(--sunpillar-1);
+    --sunpillar-clr-3: var(--sunpillar-2);
+    --sunpillar-clr-4: var(--sunpillar-3);
+    --sunpillar-clr-5: var(--sunpillar-4);
+    --sunpillar-clr-6: var(--sunpillar-5);
+
+    transform: translateZ(1.2px);
+
+}
+
+.testglare {
+    z-index: 20;
+    inset: 0;
+    position: absolute;
+    clip-path: inset(0 0 0 0 round 20px);
+    transform: translateZ(1.41px);
+    overflow: hidden;
+
+    /*background: radial-gradient(*/
+    /*        farthest-corner circle at var(--x) var(--y),*/
+    /*        rgba(255, 255, 255, 0.8) 10%,*/
+    /*        rgba(255, 255, 255, 0.65) 20%,*/
+    /*        rgba(255, 255, 255, 0) 90%*/
+    /*);*/
+    /*mix-blend-mode: hard-light;*/
+
+    background-image: radial-gradient(
+            farthest-corner circle at var(--x) var(--y),
+            hsla(0, 0%, 100%, 0.8) 10%,
+            hsla(0, 0%, 100%, 0.65) 20%,
+            hsla(0, 0%, 0%, 0.5) 90%
+    );
+    mix-blend-mode: overlay;
+}
+
+
+.arzoncard[data-rarity="rare shiny v"] .testshine,
+.arzoncard[data-rarity="rare shiny v"] .testshine:after {
+
+    --space: 5%;
+    --angle: 133deg;
+    --imgsize: cover;
+
+    background-image: var(--foil),
+    repeating-linear-gradient(0deg,
+            var(--sunpillar-clr-1) calc(var(--space) * 1),
+            var(--sunpillar-clr-2) calc(var(--space) * 2),
+            var(--sunpillar-clr-3) calc(var(--space) * 3),
+            var(--sunpillar-clr-4) calc(var(--space) * 4),
+            var(--sunpillar-clr-5) calc(var(--space) * 5),
+            var(--sunpillar-clr-6) calc(var(--space) * 6),
+            var(--sunpillar-clr-1) calc(var(--space) * 7)
+    ),
+    repeating-linear-gradient(
+            var(--angle),
+            #0e152e 0%,
+            hsl(180, 10%, 60%) 3.8%,
+            hsl(180, 29%, 66%) 4.5%,
+            hsl(180, 10%, 60%) 5.2%,
+            #0e152e 10%,
+            #0e152e 12%
+    ),
+    radial-gradient(
+            farthest-corner circle at var(--x) var(--y),
+            hsla(0, 0%, 0%, 0.1) 12%,
+            hsla(0, 0%, 0%, 0.15) 20%,
+            hsla(0, 0%, 0%, 0.25) 120%
+    );
+
+    background-position: center center,
+    0% var(--y),
+    calc(var(--x) + (var(--y) * 0.2)) var(--y),
+    var(--x) var(--y);
+
+    background-blend-mode: soft-light, hue, hard-light;
+    background-size: var(--imgsize), 200% 700%, 300% 100%, 200% 100%;
+
+    /*filter: brightness(calc((var(--pointer-from-center)*0.4) + .4)) contrast(1.4) saturate(2.25);*/
+
+}
+
+.arzoncard[data-rarity="rare shiny v"] .testshine:after {
+
+    content: "";
+
+    background-position: center center,
+    0% var(--y),
+    calc((var(--x) + (var(--y) * 0.2)) * -1) calc(var(--y) * -1),
+    var(--x) var(--y);
+
+    background-size: var(--imgsize), 200% 400%, 195% 100%, 200% 100%;
+
+    /*filter: brightness(calc((var(--pointer-from-center)*.4) + .8)) contrast(1.5) saturate(1.25);*/
+    mix-blend-mode: exclusion;
+
+}
+
+
+.arzoncard[data-rarity="rare shiny v"] .testshine:before {
+
+    content: "";
+    -webkit-mask-image: none;
+    mask-image: none;
+
+    background-image: radial-gradient(farthest-corner circle at var(--x) var(--y),
+    hsl(0, 0%, 100%) 0%,
+    hsla(0, 0%, 0%, 0) 40%
+    );
+    background-position: center;
+    background-size: cover;
+    mix-blend-mode: overlay;
+
+    opacity: 0.75;
+    z-index: 1;
+
+}
+
+
+.arzoncard[data-rarity="rare shiny v"] .testglare {
+
+    background-image: radial-gradient(farthest-corner circle at var(--x) var(--y),
+    hsl(0, 0%, 90%) 5%,
+    hsl(200, 5%, 45%) 80%,
+    hsl(320, 40%, 10%) 150%
+    );
+
+    background-size: 120% 140%;
+    background-position: center center;
+
+    mix-blend-mode: darken;
+    filter: brightness(.88) contrast(2.25) saturate(.7);
+
+    /*opacity: calc( var(--card-opacity) * var(--pointer-from-center) * 0.75 );*/
+
+}
+
+.arzoncard:not(.masked)[data-rarity="rare shiny v"] .testshine,
+.arzoncard:not(.masked)[data-rarity="rare shiny v"] .testshine:after {
+
+    --mask: none;
+    --foil: url("/arzon-website-v2/assets/img/effects/illusion.png");
+    --imgsize: 33%;
+
+    -webkit-mask-image: var(--mask);
+    mask-image: var(--mask);
+    -webkit-mask-size: var(--imgsize);
+    mask-size: var(--imgsize);
+
+    background-blend-mode: exclusion, hue, hard-light;
+    /*filter: brightness(calc((var(--pointer-from-center)*.3) + .35)) contrast(2) saturate(1.5);*/
+
+}
+
+.arzoncard:not(.masked)[data-rarity="rare shiny v"] .testshine:before {
+    content: none;
+    display: none;
+}
+
+.arzoncard:not(.masked)[data-rarity="rare shiny v"] .testshine:after {
+    /*filter: brightness(calc((var(--pointer-from-center)*.5) + .8)) contrast(1.6) saturate(1.4);*/
+}

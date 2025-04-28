@@ -36,7 +36,9 @@ const AppRoutes = () => {
 }
 
 const App = () => (
-    <Router basename="/arzon-website-v2/">
+    <Router
+        basename="/arzon-website-v2/"
+        future={{v7_startTransition: true}}>
         <AppRoutes/>
     </Router>
 )

@@ -90,12 +90,10 @@ const Header = ({isScrollEffect}: { isScrollEffect: boolean }) => {
             const token = localStorage.getItem('authToken');
             if (token) {
                 const data = await checkToken(token);
-                console.log(data);
                 if (data) {
                     setIsAuth(true);
                     setAvatarUrl(`/arzon-website-v2/assets/img/avatars/${data.avatar}`);
                     setUserId(data.userId);
-                    console.log(userId);
                 } else {
                     setIsAuth(false);
                     localStorage.removeItem('authToken');

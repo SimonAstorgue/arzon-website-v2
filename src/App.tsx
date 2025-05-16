@@ -22,7 +22,7 @@ const AppRoutes = () => {
     }, [location.pathname]);
 
     return (
-        <div>
+        <div className={`bg-zinc-100 dark:bg-zinc-800`} id="app">
             <Header isScrollEffect={isScrollEffect}/>
             <Routes>
                 <Route path="/" element={<MainPage/>}/>

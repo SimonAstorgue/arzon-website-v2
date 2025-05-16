@@ -1,10 +1,13 @@
 import {
-    Box, Button,
+    Box,
+    Button,
     Card,
     CardContent,
     CardMedia,
     Container,
-    Grid2, IconButton, InputAdornment,
+    Grid2,
+    IconButton,
+    InputAdornment,
     Modal,
     TextField,
     Typography,
@@ -26,6 +29,7 @@ interface LoginPopUpProps {
 const LoginPopUp: FC<LoginPopUpProps> = ({open, handleClose}) => {
     const isMobile = useMediaQuery('(max-width: 600px)');
     const isMd = useMediaQuery('(min-width: 768px)');
+    const [loading, setLoading] = useState(false);
 
     const [showPassword, setShowPassword] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
@@ -53,6 +57,7 @@ const LoginPopUp: FC<LoginPopUpProps> = ({open, handleClose}) => {
     };
 
     const handleClickLogin = async () => {
+        setLoading(true);
         setUsernameError(false);
         setPasswordError(false);
         let error = false;
@@ -175,7 +180,8 @@ const LoginPopUp: FC<LoginPopUpProps> = ({open, handleClose}) => {
                                 />
 
                                 {/* Login Button */}
-                                <Button variant="contained" color="primary" size="large" sx={{mt: 2, mb: 4, px: 5}}
+                                <Button loading={loading} variant="contained" color="primary" size="large"
+                                        sx={{mt: 2, mb: 4, px: 5}}
                                         onClick={handleClickLogin}>
                                     Se connecter
                                 </Button>

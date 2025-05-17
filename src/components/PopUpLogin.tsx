@@ -80,7 +80,7 @@ const LoginPopUp: FC<LoginPopUpProps> = ({open, handleClose}) => {
             localStorage.setItem('authToken', response.data);
             handleClose();
             window.location.reload();
-        } catch (e) {
+        } catch (e: any) {
             console.error(e);
             const error: string = e.response.data;
             setLoading(false);

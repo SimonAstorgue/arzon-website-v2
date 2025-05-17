@@ -1,3 +1,5 @@
+import axios from "axios";
+
 function timeToString(time: number) {
     const hours = Math.floor(time / 3600);
     const minutes = Math.floor((time % 3600) / 60);
@@ -17,4 +19,14 @@ function toPascalCase(text: string) {
     });
 }
 
-export {timeToString, toPascalCase};
+async function checkToken(token: string) {
+    try {
+        const response = await axios.post(`${import.meta.env.VITE_API_URL}/auth/checkToken`, {token});
+        return response.data;
+    } catch (e) {
+        console.error(e);
+        return false;
+    }
+}
+
+export {timeToString, toPascalCase, checkToken};

@@ -72,16 +72,18 @@ const LoginPopUp: FC<LoginPopUpProps> = ({open, handleClose}) => {
             error = true;
         }
         if (error) {
+            setLoading(false);
             return;
         }
         try {
-            const reponse = await axios.post(`${import.meta.env.VITE_API_URL}/auth/checkLogin`, {username, password});
-            localStorage.setItem('authToken', reponse.data);
+            const response = await axios.post(`${import.meta.env.VITE_API_URL}/auth/checkLogin`, {username, password});
+            localStorage.setItem('authToken', response.data);
             handleClose();
             window.location.reload();
-        } catch (e: any) {
+        } catch (e) {
             console.error(e);
             const error: string = e.response.data;
+            setLoading(false);
             if (error === "Invalid username") {
                 setErrorUsername('Identifiant incorrect');
                 setUsernameError(true);

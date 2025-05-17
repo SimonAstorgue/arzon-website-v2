@@ -17,23 +17,13 @@ import {Collections, Home, Logout, Person, Settings, SportsBar} from "@mui/icons
 
 import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-import axios from "axios";
 
 import {ThemeSwitch} from "./Switchs.tsx";
 import useDarkMode from "../hooks/useDarkMode.tsx";
 
 import Logo from "../assets/img/logo-arzon.png";
 import LoginPopUp from "./PopUpLogin.tsx";
-
-async function checkToken(token: string) {
-    try {
-        const reponse = await axios.post(`${import.meta.env.VITE_API_URL}/auth/checkToken`, {token});
-        return reponse.data;
-    } catch (e) {
-        console.error(e);
-        return false;
-    }
-}
+import {useAuth} from "../context/AuthContext.tsx";
 
 const Header = ({isScrollEffect}: { isScrollEffect: boolean }) => {
 
@@ -80,28 +70,18 @@ const Header = ({isScrollEffect}: { isScrollEffect: boolean }) => {
         color = `rgba(244, 244, 245, ${opacity})`;
     }
 
-    const [isAuth, setIsAuth] = useState(false);
     const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
-    const [userId, setUserId] = useState<number | null>(null);
     const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
 
+    const {userData, isAuth, logout} = useAuth();
+
     useEffect(() => {
-        const checkAuthToken = async () => {
-            const token = localStorage.getItem('authToken');
-            if (token) {
-                const data = await checkToken(token);
-                if (data) {
-                    setIsAuth(true);
-                    setAvatarUrl(`/arzon-website-v2/assets/img/avatars/${data.avatar}`);
-                    setUserId(data.userId);
-                } else {
-                    setIsAuth(false);
-                    localStorage.removeItem('authToken');
-                }
-            }
-        };
-        checkAuthToken().then(r => r);
-    }, [userId]);
+        if (userData) {
+            setAvatarUrl(`/arzon-website-v2/assets/img/avatars/${userData.avatarUrl}`);
+        } else {
+            setAvatarUrl(null);
+        }
+    }, [userData]);
 
     const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget as HTMLElement);
@@ -112,8 +92,7 @@ const Header = ({isScrollEffect}: { isScrollEffect: boolean }) => {
     };
 
     const handleLogout = () => {
-        setIsAuth(false);
-        localStorage.removeItem('authToken');
+        logout()
         handleMenuClose();
     };
 

@@ -12,6 +12,7 @@ import RecordsPage from "./pages/Records.tsx";
 import ArzondexPage from "./pages/Arzondex.jsx";
 import ProfilePage from "./pages/Profile.tsx";
 import {useEffect, useState} from "react";
+import {AuthProvider} from "./context/AuthContext.tsx";
 
 const AppRoutes = () => {
     const location = useLocation();
@@ -19,19 +20,22 @@ const AppRoutes = () => {
 
     useEffect(() => {
         setIsScrollEffect(location.pathname === '/');
+        window.scrollTo(0, 0);
     }, [location.pathname]);
 
     return (
-        <div className={`bg-zinc-100 dark:bg-zinc-800`} id="app">
-            <Header isScrollEffect={isScrollEffect}/>
-            <Routes>
-                <Route path="/" element={<MainPage/>}/>
-                <Route path="/records" element={<RecordsPage/>}/>
-                <Route path="/arzondex" element={<ArzondexPage/>}/>
-                <Route path="/profile/:username" element={<ProfilePage/>}/>
-            </Routes>
-            <Footer/>
-        </div>
+        <AuthProvider>
+            <div className={`bg-zinc-100 dark:bg-zinc-800`} id="app">
+                <Header isScrollEffect={isScrollEffect}/>
+                <Routes>
+                    <Route path="/" element={<MainPage/>}/>
+                    <Route path="/records" element={<RecordsPage/>}/>
+                    <Route path="/arzondex" element={<ArzondexPage/>}/>
+                    <Route path="/profile/:username" element={<ProfilePage/>}/>
+                </Routes>
+                <Footer/>
+            </div>
+        </AuthProvider>
     );
 }
 

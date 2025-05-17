@@ -79,9 +79,8 @@ const PodiumPlace = ({place, user}: { place: number, user: user | null }) => {
             </div>
             <div className={`flex flex-row justify-center items-center w-full`}>
                 <div
-                    className={`flex flex-col items-center rounded-t-2xl ${getPodiumColor(place)} ${getPodiumHeight(place)} max-w-[150px]`}
+                    className={`flex flex-col items-center rounded-t-2xl ${getPodiumColor(place)} ${getPodiumHeight(place)} w-24 sm:w-[150px]`}
                     style={{
-                        width: 'clamp(120px, 150px, 150px)',
                         boxShadow: `4px 2px 3px ${getPodiumShadowColor(place)}`,
                     }}>
                     <Typography className={`text-[50px] font-bold text-zinc-100`}
@@ -145,7 +144,7 @@ const CategoryRecord = ({category}: { category: category }) => {
 
     return (
         <div
-            className={`flex flex-col items-center rounded-3xl w-[100vw] sm:w-[600px] mt-6 mb-6 ml-0 mr-0 sm:ml-4 sm:mr-4 h-auto`}
+            className={`flex flex-col items-center rounded-3xl w-[96vw] sm:w-[600px] mt-6 mb-6 ml-0 mr-0 sm:ml-4 sm:mr-4 h-auto`}
             style={{
                 filter: 'drop-shadow(2px 0 8px rgba(45, 52, 54, 0.3))',
                 backgroundImage: `url(${Beer})`,

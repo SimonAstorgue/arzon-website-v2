@@ -131,7 +131,7 @@ const Header = ({isScrollEffect}: { isScrollEffect: boolean }) => {
                         </Button>
                     </Link>
 
-                    <Divider orientation="vertical" flexItem className="border-zinc-900 dark:border-zinc-100"/>
+                    <Divider orientation="vertical" flexItem className="border-zinc-900 dark:border-zinc-100 sm:mx-3"/>
 
                     <Link to="/records" className="no-underline">
                         <Button className="btnHeader">
@@ -146,7 +146,7 @@ const Header = ({isScrollEffect}: { isScrollEffect: boolean }) => {
                         </Button>
                     </Link>
 
-                    <Divider orientation="vertical" flexItem className="border-zinc-900 dark:border-zinc-100"/>
+                    <Divider orientation="vertical" flexItem className="border-zinc-900 dark:border-zinc-100 sm:mx-3"/>
 
                     <Link to="/arzondex" className="no-underline">
                         <Button className="btnHeader">
@@ -177,7 +177,7 @@ const Header = ({isScrollEffect}: { isScrollEffect: boolean }) => {
                                 },
                             }}
                         >
-                            <Link to="/profile" className="no-underline">
+                            <Link to={`/profile/${userData?.userId}`} className="no-underline">
                                 <MenuItem onClick={handleMenuClose}
                                           sx={{color: isDarkMode ? 'rgba(244, 244, 245, 1)' : 'rgba(39, 39, 42, 1)'}}>
                                     <ListItemIcon>

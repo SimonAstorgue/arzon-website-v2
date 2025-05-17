@@ -4,6 +4,8 @@ import Beer from "../assets/img/beer.avif";
 import {timeToString, toPascalCase} from "../helpers/Utils.ts";
 import {useEffect, useState} from "react";
 
+import {Link} from "react-router-dom";
+
 interface category {
     category_id: number;
     name: string;
@@ -58,24 +60,26 @@ const PodiumPlace = ({place, user}: { place: number, user: user | null }) => {
     return (
         <div className={`flex flex-col items-center`}>
             <div>
-                <div className={`flex flex-col items-center`}>
-                    <img src={`assets/img/avatars/${user ? (user.avatar) : ("default-user.jpg")}`}
-                         className={`w-[70px] h-[70px] rounded-full mt-2.5 mb-2.5 mr-0 ml-0 cursor-pointer ${user ? ('') : ('hidden')}`}
-                         style={{
-                             boxShadow: '2px 2px 2px rgba(45, 52, 54, 0.5)'
-                         }}
-                         alt=""/>
-                    <Typography
-                        className={`font-medium text-2xl text-zinc-900 bg-zinc-200 rounded-3xl pr-2.5 pl-2.5 text-center mt-0 mb-0 mr-auto ml-auto cursor-pointer`}
-                        sx={{boxShadow: '2px 2px 2px rgba(45, 52, 54, 0.5)'}}>
-                        {user ? (toPascalCase(user.name)) : ("")}
-                    </Typography>
-                    <Typography
-                        className={`font-medium text-[22px] text-zinc-900 bg-zinc-200 rounded-3xl pr-2.5 pl-2.5 text-center mt-[1px] mb-[5px] mr-auto ml-auto cursor-pointer`}
-                        sx={{boxShadow: '2px 2px 2px rgba(45, 52, 54, 0.5)'}}>
-                        {user ? (timeToString(user.time)) : ("")}
-                    </Typography>
-                </div>
+                <Link to={`/profile/${user ? (user.id) : ("")}`} className={`no-underline`}>
+                    <div className={`flex flex-col items-center`}>
+                        <img src={`assets/img/avatars/${user ? (user.avatar) : ("default-user.jpg")}`}
+                             className={`w-[70px] h-[70px] rounded-full mt-2.5 mb-2.5 mr-0 ml-0 cursor-pointer ${user ? ('') : ('hidden')}`}
+                             style={{
+                                 boxShadow: '2px 2px 2px rgba(45, 52, 54, 0.5)'
+                             }}
+                             alt=""/>
+                        <Typography
+                            className={`font-medium text-2xl text-zinc-900 bg-zinc-200 rounded-3xl pr-2.5 pl-2.5 text-center mt-0 mb-0 mr-auto ml-auto cursor-pointer`}
+                            sx={{boxShadow: '2px 2px 2px rgba(45, 52, 54, 0.5)'}}>
+                            {user ? (toPascalCase(user.name)) : ("")}
+                        </Typography>
+                        <Typography
+                            className={`font-medium text-[22px] text-zinc-900 bg-zinc-200 rounded-3xl pr-2.5 pl-2.5 text-center mt-[1px] mb-[5px] mr-auto ml-auto cursor-pointer`}
+                            sx={{boxShadow: '2px 2px 2px rgba(45, 52, 54, 0.5)'}}>
+                            {user ? (timeToString(user.time)) : ("")}
+                        </Typography>
+                    </div>
+                </Link>
             </div>
             <div className={`flex flex-row justify-center items-center w-full`}>
                 <div
@@ -103,9 +107,11 @@ const UserRank = ({i, user}: { i: number, user: user | null }) => {
             }}>
             <div className={`flex flex-row justify-start items-center gap-6`}>
                 <Typography className={`font-medium text-[18px] text-zinc-900`}>{i}</Typography>
-                <Typography className={`font-medium text-[18px] text-zinc-900 cursor-pointer`}>
-                    {user ? (toPascalCase(user.name)) : ("")}
-                </Typography>
+                <Link to={`/profile/${user ? (user.id) : ("")}`} className={`no-underline`}>
+                    <Typography className={`font-medium text-[18px] text-zinc-900 cursor-pointer`}>
+                        {user ? (toPascalCase(user.name)) : ("")}
+                    </Typography>
+                </Link>
             </div>
             <Typography className={`font-medium text-[18px] text-zinc-900`}>
                 {user ? (timeToString(user.time)) : ("")}

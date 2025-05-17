@@ -3,6 +3,7 @@ import {checkToken} from "../helpers/Utils.ts";
 
 interface UserData {
     userId: number;
+    username: string;
     avatarUrl: string;
     permission: string;
 }
@@ -31,7 +32,8 @@ export function AuthProvider({children}: { children: ReactNode }) {
                 if (data) {
                     setIsAuth(true);
                     setUserData({
-                        userId: data.userId,
+                        userId: data.user_id,
+                        username: data.username,
                         avatarUrl: data.avatar,
                         permission: data.permission,
                     });

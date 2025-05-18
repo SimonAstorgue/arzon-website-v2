@@ -84,7 +84,7 @@ const StatisticsCategory = ({bestTime}: { bestTime: BestTimeData }) => {
     }, [userId, bestTime, records]);
 
     return (
-        <div className={`flex flex-col justify-start items-center w-[400px] rounded-3xl m-5 p-2.5`}
+        <div className={`flex flex-col justify-start items-center w-[400px] rounded-3xl my-5 sm:m-5 p-2.5`}
              style={{boxShadow: '0 12px 12px rgba(45, 52, 54, 0.5)'}}>
             <Typography
                 className={`font-bold text-4xl text-zinc-900 text-center mb-2.5 py-0.5 px-1 underline rounded-3xl`}>

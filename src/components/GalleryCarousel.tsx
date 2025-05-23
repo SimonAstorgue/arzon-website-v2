@@ -2,7 +2,7 @@ import Carousel from "react-material-ui-carousel";
 import {NavigateBefore, NavigateNext} from "@mui/icons-material";
 
 const imageFolder = '/arzon-website-v2/assets/img/carousel/';
-const TOTAL_IMAGES = 6;
+const TOTAL_IMAGES = 7;
 
 const GalleryCarousel = () => {
     const images = Array.from({ length: TOTAL_IMAGES }, (_, index) =>
